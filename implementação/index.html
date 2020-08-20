@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Media Aritimetica</title>
+    <script>
+        
+        // Criação do objeto números
+        pessoa = {
+            nome :"",
+            idade:0,            
+            classificar:function(){
+                let classificacao = "";
+                if (this.idade<14) {
+                    classificacao = "crianca";
+                } else if (this.idade>=14 && this.idade<18) {
+                    classificacao = "adolescente";
+                } else if (this.idade>=18 && this.idade<60) {
+                    classificacao = "adulto";
+                } else if (this.idade>=60) {
+                    classificacao = "idoso";
+                } 
+                return classificacao;
+            },             
+        };
+
+        controller = {
+            obterDados:function(){
+                let nome = document.getElementById("nome").value;
+                let idade = parseFloat(document.getElementById("idade").value);
+                return {nome,idade};
+            },
+            limparCampos: function(){
+                document.getElementById("nome").value="";
+                document.getElementById("idade").value="";
+            },
+
+        };
+
+        let qtdCrianca=0;
+        let qtdAdolescente=0;
+        let qtdAdulto=0;
+        let qtdIdoso=0;
+
+        function processar(){      
+
+        let pess = controller.obterDados();
+
+          pessoa.nome = pess.nome;
+          pessoa.idade = pess.idade;
+
+         
+           let classif = pessoa.classificar();
+        if (classif=="crianca") {
+            document.getElementById("cri").value = ++qtdCrianca  ;       
+        } else if(classif == "adolescente") {
+            document.getElementById("ado").value = ++qtdAdolescente  ;    
+        }else if(classif == "adulto") {
+            document.getElementById("adu").value = ++qtdAdulto  ;    
+        }else if(classif == "idoso") {
+            document.getElementById("ido").value = ++qtdIdoso  ;    
+        }
+        
+        document.getElementById("nome").value="";
+        document.getElementById("idade").value="";
+
+        };
+
+        
+    </script>
+</head>
+<body>
+
+    <div class="container" style="width: 30rem; height: 32rem; padding-bottom: 1rem; margin-top: 5rem; background-color: blue; ">
+        <div style="text-align: center;"><h2>Classificação Etária</h2></div>
+        <div class="form-group">
+          <label for="nome" style="font-weight: bold;">Nome</label>
+          <input type="text" class="form-control" id="nome" placeholder="Seu nome" >          
+        </div>
+        <div class="form-group">
+          <label for="idade" style="font-weight: bold;">Idade</label>
+          <input type="text" class="form-control" id="idade" placeholder="Sua idade" >
+        </div>
+        
+        <button class="btn btn-primary" onclick="processar()">Classificar</button> 
+        <button class="btn btn-primary" onclick="controller.limparCampos()">Limpar campos</button> 
+        <div class="alert alert-primary" role="alert" style="height: 13rem; margin-top: 1rem;">           
+            
+               <label for="crianca">Criança:</label> <input type="text" class="" id="cri" disabled > <br>         
+               <label for="crianca">Adolescente :</label> <input type="text" class="" id="ado" disabled > <br>
+               <label for="crianca">Adulto :</label> <input type="text" class="" id="adu" disabled > <br>
+               <label for="crianca">Idoso :</label> <input type="text" class="" id="ido" disabled > <br>
+           
+        </div>       
+       
+    </div>
+       
+
+    // 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
